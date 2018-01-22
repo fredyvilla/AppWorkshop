@@ -20,23 +20,18 @@ namespace PartsUnlimitedStoreService
         }
 
         [FunctionName("GetProductDetails")]
-        public static async Task<HttpResponseMessage> Run([HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = null)]HttpRequestMessage req, TraceWriter log)
+        public static async Task<HttpResponseMessage> Run([HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "product/{id:int}")]HttpRequestMessage req, int? id, TraceWriter log)
         {
-            // parse query parameter
-            string v = req.GetQueryNameValuePairs()
-                .FirstOrDefault(q => string.Compare(q.Key, "id", true) == 0)
-                .Value;
-
-            if (!int.TryParse(v, out int id))
-            {
-                return req.CreateResponse(HttpStatusCode.BadRequest, "Please pass a valid id on the query string");
-            }
-
             log.Info($"GetProductDetails {id}");
+
+            if (!id.HasValue)
+            {
+                return req.CreateResponse(HttpStatusCode.BadRequest, "Please pass a valid product id");
+            }
 
             var db = new DbModels.PartsUnlimitedContext();
             // Retrieve Product from database
-            var product = await db.Products.SingleAsync(a => a.ProductId == id);
+            var product = await db.Products.SingleAsync(a => a.ProductId == id.Value);
 
             return req.CreateResponse(HttpStatusCode.OK, AutoMapper.Mapper.Map<ApiModels.Product>(product));
         }

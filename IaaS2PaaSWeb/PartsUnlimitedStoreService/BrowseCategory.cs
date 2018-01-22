@@ -20,23 +20,18 @@ namespace PartsUnlimitedStoreService
         }
 
         [FunctionName("BrowseCategory")]
-        public static async Task<HttpResponseMessage> Run([HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = null)]HttpRequestMessage req, TraceWriter log)
+        public static async Task<HttpResponseMessage> Run([HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "categories/{id:int}")]HttpRequestMessage req, int? id, TraceWriter log)
         {
-            // parse query parameter
-            string v = req.GetQueryNameValuePairs()
-                .FirstOrDefault(q => string.Compare(q.Key, "categoryId", true) == 0)
-                .Value;
+            log.Info($"Get Product Category {id}");
 
-            if (!int.TryParse(v, out int categoryId))
+            if (!id.HasValue)
             {
-                return req.CreateResponse(HttpStatusCode.BadRequest, "Please pass a valid categoryId on the query string");
+                return req.CreateResponse(HttpStatusCode.BadRequest, "Please pass a valid category ID");
             }
-
-            log.Info("C# HTTP trigger function processed a request.");
 
             var db = new DbModels.PartsUnlimitedContext();
             // Retrieve Category genre and its Associated associated Products products from database
-            var genreModel = await db.Categories.Include("Products").SingleAsync(g => g.CategoryId == categoryId);
+            var genreModel = await db.Categories.Include("Products").SingleAsync(g => g.CategoryId == id.Value);
 
             return req.CreateResponse(HttpStatusCode.OK, AutoMapper.Mapper.Map<ApiModels.Category>(genreModel));
         }

@@ -20,7 +20,7 @@ namespace PartsUnlimitedStoreService
         }
 
         [FunctionName("GetCategories")]
-        public static async Task<HttpResponseMessage> Run([HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = null)]HttpRequestMessage req, TraceWriter log)
+        public static async Task<HttpResponseMessage> Run([HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "categories")]HttpRequestMessage req, TraceWriter log)
         {
             log.Info("Retrieving Product Categories");
 
