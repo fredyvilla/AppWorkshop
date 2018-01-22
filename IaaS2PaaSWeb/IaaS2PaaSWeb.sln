@@ -11,6 +11,8 @@ Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "PartsUnlimitedDatabase", "P
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PartsUnlimitedModels", "PartsUnlimitedModels\PartsUnlimitedModels.csproj", "{2D87A436-DDAD-4553-A1BF-B13827025E2D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PartsUnlimitedStoreService", "PartsUnlimitedStoreService\PartsUnlimitedStoreService.csproj", "{4E4DCA50-BDA6-4E15-932F-E436FA3F1DB1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +37,10 @@ Global
 		{2D87A436-DDAD-4553-A1BF-B13827025E2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2D87A436-DDAD-4553-A1BF-B13827025E2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2D87A436-DDAD-4553-A1BF-B13827025E2D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E4DCA50-BDA6-4E15-932F-E436FA3F1DB1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E4DCA50-BDA6-4E15-932F-E436FA3F1DB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E4DCA50-BDA6-4E15-932F-E436FA3F1DB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E4DCA50-BDA6-4E15-932F-E436FA3F1DB1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
