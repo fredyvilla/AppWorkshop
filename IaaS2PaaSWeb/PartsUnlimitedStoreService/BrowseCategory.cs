@@ -1,5 +1,4 @@
 using System.Data.Entity;
-using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -25,12 +24,9 @@ namespace PartsUnlimitedStoreService
             log.Info($"Get Product Category {id}");
 
             if (!id.HasValue)
-            {
                 return req.CreateResponse(HttpStatusCode.BadRequest, "Please pass a valid category ID");
-            }
 
             var db = new DbModels.PartsUnlimitedContext();
-            // Retrieve Category genre and its Associated associated Products products from database
             var genreModel = await db.Categories.Include("Products").SingleAsync(g => g.CategoryId == id.Value);
 
             return req.CreateResponse(HttpStatusCode.OK, AutoMapper.Mapper.Map<ApiModels.Category>(genreModel));

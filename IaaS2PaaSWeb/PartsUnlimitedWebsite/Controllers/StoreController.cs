@@ -1,7 +1,5 @@
 ﻿using PartsUnlimited.Models;
 using System;
-using System.Data.Entity;
-using System.Linq;
 using System.Runtime.Caching;
 using System.Web.Mvc;
 using PartsUnlimited.Utils;
