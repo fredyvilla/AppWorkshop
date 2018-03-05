@@ -1,0 +1,56 @@
+﻿swagger: '2.0'
+info:
+  title: functionapp20180228044327.azurewebsites.net
+  version: 1.0.0
+host: functionapp20180228044327.azurewebsites.net
+basePath: /
+schemes:
+  - https
+  - http
+paths:
+  '/api/categories/{id}':
+    get:
+      operationId: '/api/categories/{id}/get'
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: integer
+      description: Retrieves a category with is products
+      responses:
+        '200':
+          description: Success operation
+  /api/categories:
+    get:
+      operationId: /api/categories/get
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters: []
+      description: Retrieves all available categories
+      responses:
+        '200':
+          description: Success operation
+  '/api/product/{id}':
+    get:
+      operationId: '/api/product/{id}/get'
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: integer
+      description: Retrieves a product details
+      responses:
+        '200':
+          description: Success operation
+definitions: {}
+securityDefinitions: {}
